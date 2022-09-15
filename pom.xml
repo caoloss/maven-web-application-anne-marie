@@ -96,13 +96,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://35.183.186.57:8191/landmark/repository/walmart-fe-releases/</url>
+	      <url>http://35.183.186.57:8191/landmark/repository/vitech-fe-te-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://35.183.186.57:8191/landmark/repository/walmart-fe-snapshot/</url>
+	      <url>http://35.183.186.57:8191/landmark/repository/vitech-fe-te-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
