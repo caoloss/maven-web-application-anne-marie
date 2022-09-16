@@ -108,7 +108,7 @@
 	</distributionManagement>
 	
 	<build>
-		<finalName>vitech-app-war</finalName>
+		<finalName>tech-app</finalName>
 		
 		<plugins>
 			<plugin>
