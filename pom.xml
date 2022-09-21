@@ -96,19 +96,19 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url>http://3.99.130.170:8191/landmark/repository/baird-web-release/</url>
+	      <url>http://3.96.135.162:8191/landmark/repository/vitech-prod-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://3.99.130.170:8191/landmark/repository/baird-web-snapshot/</url>
+	      <url>http://3.96.135.162:8191/landmark/repository/vitech-prod-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
 	
 	<build>
-		<finalName>baird-web</finalName>
+		<finalName>vitech-web-prod</finalName>
 		
 		<plugins>
 			<plugin>
