@@ -36,7 +36,6 @@ pipeline{
         deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'http://3.96.52.143:8080/')], contextPath: null, war: 'target/*war' }
     }     
   }
-  */
 post{
     always{
       emailext body: '''Hey guys,
@@ -63,4 +62,5 @@ Thank you
 Anne Marie''', recipientProviders: [buildUser(), culprits(), contributor()], subject: 'Build Check', to: 'annemariegainsom@gmail.com'
     }
   }
+  */
 }
