@@ -63,4 +63,3 @@ Thank you
 Anne Marie''', recipientProviders: [buildUser(), culprits(), contributor()], subject: 'Build Check', to: 'annemariegainsom@gmail.com'
     }
   }
-}
