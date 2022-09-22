@@ -11,7 +11,7 @@ stage('2Test&Build'){
     sh "${mavenHome}/bin/mvn sonar:sonar"
   }
   stage('4uploadArtifacts'){
-    sh "${mavenHome}/bin/mvn deploy"
+    //sh "${mavenHome}/bin/mvn deploy"
     //http://3.96.135.162:8191/landmark/repository/vitech-prod-snapshot/
     //http://3.96.135.162:8191/landmark/repository/vitech-prod-release/
   } 
