@@ -22,15 +22,14 @@ pipeline{
         sh "echo 'Perfoming CodeQualityAnalysis' "
         sh "mvn sonar:sonar"
       }
-    }
-    /*
+    } 
+    
     stage('5uploadNexus'){
       steps{
         sh "mvn deploy"
         //http://3.96.135.162:8191/landmark/repository/baird-fe-app-release/
         //http://3.96.135.162:8191/landmark/repository/baird-fe-app-snapshot/
       }
-      */
     }  
     stage('8deploy2prod'){
       steps{
@@ -63,3 +62,4 @@ Thank you
 Anne Marie''', recipientProviders: [buildUser(), culprits(), contributor()], subject: 'Build Check', to: 'annemariegainsom@gmail.com'
     }
   }
+}
