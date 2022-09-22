@@ -1,0 +1,65 @@
+pipeline{
+  agent any 
+  tools {
+    maven "3.8.6"
+  }  
+  stages {
+    stage('1GetCode'){
+      steps{
+        sh "echo 'cloning the latest application version' "
+        git branch: 'patch-3', url: 'https://github.com/Amgbillion/maven-web-application'
+      }
+    }
+    stage('3Test+Build'){
+      steps{
+        sh "echo 'running JUnit-test-cases' "
+        sh "echo 'testing must passed to create artifacts ' "
+        sh "mvn clean package"
+      }
+    }
+    stage('4CodeQuality'){
+      steps{
+        sh "echo 'Perfoming CodeQualityAnalysis' "
+        sh "mvn sonar:sonar"
+      }
+    } 
+    
+    stage('5uploadNexus'){
+      steps{
+        sh "mvn deploy"
+        //http://3.96.135.162:8191/landmark/repository/baird-fe-app-release/
+        //http://3.96.135.162:8191/landmark/repository/baird-fe-app-snapshot/
+      }
+    }  
+    stage('8deploy2prod'){
+      steps{
+        deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'http://3.96.52.143:8080/')], contextPath: null, war: 'target/*war' }
+    }     
+  }
+post{
+    always{
+      emailext body: '''Hey guys,
+
+Builds and deploy is successful.
+
+Thank you
+Anne Marie''', recipientProviders: [buildUser(), culprits(), contributor()], subject: 'Build Check', to: 'annemariegainsom@gmail.com'
+    }
+    success{
+emailext body: '''Hey guys,
+
+Builds and deploy is successful.
+
+Thank you
+Anne Marie''', recipientProviders: [buildUser(), culprits(), contributor()], subject: 'Build Check', to: 'annemariegainsom@gmail.com'
+    } 
+    failure{
+      emailext body: '''Hey guys,
+
+Builds and deploy wasn't successful. please review and resolve.
+
+Thank you
+Anne Marie''', recipientProviders: [buildUser(), culprits(), contributor()], subject: 'Build Check', to: 'annemariegainsom@gmail.com'
+    }
+  }
+}
