@@ -97,19 +97,19 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Releases Nexus Repository</name>
-	      <url> http://35.183.186.57:8191/landmark/repository/walmart-fe-releases/</url>
+	      <url> http://3.96.135.162:8191/landmark/repository/baird-fe-app-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>Landmark Technologies Snapshot Nexus Repository </name>
-	      <url>http://35.183.186.57:8191/landmark/repository/walmart-fe-snapshot/</url>
+	      <url>http://3.96.135.162:8191/landmark/repository/baird-fe-app-snapshot/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
 	
 	<build>
-		<finalName>maven-web-app</finalName>
+		<finalName>baird-app</finalName>
 		
 		<plugins>
 			<plugin>
