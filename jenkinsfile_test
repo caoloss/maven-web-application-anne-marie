@@ -1,0 +1,38 @@
+node{
+    def mavenHome = tool name: '3.8.6'
+  stage('1cloneCode'){
+   git "https://github.com/Amgbillion/maven-web-application"
+  }
+stage('2Test&Build'){
+    sh "${mavenHome}/bin/mvn clean package"
+    //bat "${mavenHome}/bin/mvn clean package"
+  }
+  stage('3codeQuality'){
+    sh "${mavenHome}/bin/mvn sonar:sonar"
+  }
+  /*
+  stage('4uploadArtifacts'){
+    sh "${mavenHome}/bin/mvn deploy"
+    //http://3.96.135.162:8191/landmark/repository/vitech-prod-snapshot/
+    //http://3.96.135.162:8191/landmark/repository/vitech-prod-release/
+  } 
+stage('5deploy2UAT'){
+    sh "echo 'deploy to UAT'  "
+    deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'http://3.96.52.143:8080/')], contextPath: null, war: 'target/*war'
+  }
+    stage('6approvalGate'){
+    sh "echo 'ready for review' "
+    timeout(time:5, unit:'DAYS') {
+    input message: 'Application ready for deployment, Please review and approve'
+      }
+  }
+    stage('7deploy2Prod'){
+        deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'http://3.96.52.143:8080/')], contextPath: null, war: 'target/*war'
+    }
+    stage('8emailNotification'){
+       emailext body: '''Hi all,
+
+Anne Marie''', recipientProviders: [buildUser(), contributor(), developers(), requestor()], subject: 'build status', to: 'annemariegainsom@gmail.com'
+   }
+   */
+}
