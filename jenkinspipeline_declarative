@@ -23,7 +23,7 @@ pipeline{
         sh "mvn sonar:sonar"
       }
     } 
-    
+    /*
     stage('5uploadNexus'){
       steps{
         sh "mvn deploy"
@@ -36,6 +36,7 @@ pipeline{
         deploy adapters: [tomcat9(credentialsId: 'tomcatcredential', path: '', url: 'http://3.96.52.143:8080/')], contextPath: null, war: 'target/*war' }
     }     
   }
+  */
 post{
     always{
       emailext body: '''Hey guys,
