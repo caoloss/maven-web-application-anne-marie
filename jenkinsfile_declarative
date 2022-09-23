@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    tools {
+        maven "maven3.8.6"
+    }
+    options(){
+        timestamps()
+    }
+    triggers{
+        pollSCM('* * * * *')
+    }
+    stages {
+        stage('cloning the code') {
+            steps {
+            git 'https://github.com/Amgbillion/maven-web-application'
+            }
+        }
+        stage('Test & Build') {
+            steps {
+            sh "mvn clean package"
+            }
+        }
+          stage('Code Quality') {
+            steps {
+            sh "mvn sonar:sonar"
+            }
+        } 
+        stage('Upload To Nexus') {
+            steps {
+            sh "mvn deploy"
+            }
+        } 
+        stage('Deploy to Tomcat') {
+            steps {
+            deploy adapters: [tomcat9(credentialsId: 'tomcatcredentials', path: '', url: 'http://3.96.52.143:8080/')], contextPath: null, war: 'target/*war'
+            }
+        }
+    }
+      post{
+       always {
+          // sendNotification currentBuild,result
+           emailext body: 'Build successful', subject: 'SUCCESS', to: 'annemariegainsom@gmail.com'
+           //mail bcc: '', body: '${env.BUILD_URL} Successful', cc: '', from: '', replyTo: '', subject: 'Success', to: 'annemariegainsom@gmail.com'
+           
+       }
+   } 
+}
